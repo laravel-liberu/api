@@ -7,12 +7,11 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use LaravelEnso\Api\Contracts\Endpoint;
 use LaravelEnso\Api\Contracts\Retry;
-use LaravelEnso\Api\Contracts\Token;
 use LaravelEnso\Api\Contracts\UsesAuth;
 use LaravelEnso\Api\Enums\Methods;
 use LaravelEnso\Api\Enums\ResponseCodes;
 
-abstract class Api
+class Api
 {
     protected Endpoint $endpoint;
 
@@ -32,7 +31,7 @@ abstract class Api
 
         if ($response->failed()) {
             if ($this->possibleTokenExpiration($response)) {
-                $this->tokenManager()->auth();
+                $this->endpoint->tokenProvider()->auth();
 
                 return $this->call();
             }
@@ -44,8 +43,6 @@ abstract class Api
 
         return $response->throw();
     }
-
-    abstract protected function tokenManager(): Token;
 
     protected function response(): Response
     {
@@ -61,7 +58,7 @@ abstract class Api
         $headers = ['X-Requested-With' => 'XMLHttpRequest'];
 
         if ($this->endpoint instanceof UsesAuth) {
-            $token = $this->tokenManager()->current();
+            $token = $this->endpoint->tokenProvider()->current();
             $headers['Authorization'] = "Bearer {$token}";
         }
 
