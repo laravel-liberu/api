@@ -1,0 +1,33 @@
+{
+    "name": "laravel-enso/api",
+    "description": "External API boilerplate for Laravel Enso",
+    "keywords": [
+        "laravel-enso",
+        "api"
+    ],
+    "homepage": "https://git.xtelecom.ro/laravel-enso/api",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "name": "Adrian Ocneanu",
+        "email": "aocneanu@gmail.com",
+        "homepage": "https://laravel-enso.com",
+        "role": "Developer"
+    },{
+        "name": "Vlad Chiovianu",
+        "email": "vlad.chiovianu@earthlink.ro",
+        "homepage": "https://laravel-enso.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": ">=7.4.0",
+        "laravel/framework": "^7.0|^8.0",
+        "laravel-enso/enums": "^2.0",
+        "laravel-enso/helpers": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelEnso\\Frisbo\\": "src/"
+        }
+    }
+}
