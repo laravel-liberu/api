@@ -4,7 +4,7 @@ namespace LaravelEnso\Api\Contracts;
 
 interface Token
 {
-    public function auth(): void;
+    public function auth(): self;
 
     public function current(): string;
 }
