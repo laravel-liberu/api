@@ -15,13 +15,15 @@ class ApiCallError extends Notification implements ShouldQueue
 
     private string $action;
     private array $payload;
-    private Throwable $exception;
+    private int $code;
+    private string $message;
 
     public function __construct(string $action, array $payload, Throwable $exception)
     {
         $this->action = $action;
         $this->payload = $payload;
-        $this->exception = $exception;
+        $this->code = $exception->getCode();
+        $this->message = $exception->getMessage();
     }
 
     public function via()
@@ -38,9 +40,9 @@ class ApiCallError extends Notification implements ShouldQueue
                 'name' => $notifiable->person->appellative(),
             ]))->line(__('The action :action failed with the following error code: :code', [
                 'action' => $this->action,
-                'code' => $this->exception->getCode(),
+                'code' => $this->code,
             ]))->line(__('Reported error message: :message', [
-                'message' => $this->exception->getMessage(),
+                'message' => $this->message,
             ]))->line(__('Request payload: :payload', [
                 'payload' => json_encode($this->payload),
             ]));
