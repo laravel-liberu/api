@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelEnso\\Frisbo\\": "src/"
+            "LaravelEnso\\Api\\": "src/"
         }
     }
 }
