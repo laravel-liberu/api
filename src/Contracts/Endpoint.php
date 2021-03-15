@@ -6,7 +6,7 @@ interface Endpoint
 {
     public function method(): string;
 
-    public function path(): string;
+    public function url(): string;
 
     public function body(): array;
 }

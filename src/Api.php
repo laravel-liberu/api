@@ -3,7 +3,6 @@
 namespace LaravelEnso\Api;
 
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use LaravelEnso\Api\Contracts\Endpoint;
 use LaravelEnso\Api\Contracts\Retry;
@@ -37,6 +36,8 @@ class Api
             }
 
             if ($this->shouldRetry($response)) {
+                sleep($this->endpoint->delay());
+
                 return $this->call();
             }
         }
@@ -49,8 +50,8 @@ class Api
         $method = Methods::get($this->endpoint->method());
 
         return Http::withHeaders($this->headers())
-            ->withOptions(['debug' => Config::get('enso.frisbo.debug')])
-            ->{$method}($this->url(), $this->endpoint->body());
+            ->withOptions(['debug' => false])
+            ->{$method}($this->endpoint->url(), $this->endpoint->body());
     }
 
     protected function headers()
@@ -63,13 +64,6 @@ class Api
         }
 
         return $headers;
-    }
-
-    protected function url(): string
-    {
-        $baseUrl = Config::get('enso.frisbo.baseUrl');
-
-        return "{$baseUrl}/{$this->endpoint->path()}";
     }
 
     protected function shouldRetry(): bool
