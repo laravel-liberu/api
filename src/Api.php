@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use LaravelEnso\Api\Contracts\Endpoint;
 use LaravelEnso\Api\Contracts\Retry;
 use LaravelEnso\Api\Contracts\UsesAuth;
+use LaravelEnso\Api\Enums\Authorization;
 use LaravelEnso\Api\Enums\Methods;
 use LaravelEnso\Api\Enums\ResponseCodes;
 
@@ -60,7 +61,8 @@ class Api
 
         if ($this->endpoint instanceof UsesAuth) {
             $token = $this->endpoint->tokenProvider()->current();
-            $headers['Authorization'] = "Bearer {$token}";
+            $type = Authorization::get($this->endpoint->tokenProvider()->type());
+            $headers['Authorization'] = "{$type} {$token}";
         }
 
         return $headers;
