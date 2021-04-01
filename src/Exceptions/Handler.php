@@ -5,7 +5,6 @@ namespace LaravelEnso\Api\Exceptions;
 use Illuminate\Database\Eloquent\Collection;
 use LaravelEnso\Api\Notifications\ApiCallError;
 use LaravelEnso\Core\Models\User;
-use LaravelEnso\Roles\Enums\Roles;
 use Throwable;
 
 class Handler
@@ -35,6 +34,6 @@ class Handler
 
     private function admins(): Collection
     {
-        return User::active()->whereRoleId(Roles::Admin)->get();
+        return User::active()->admins()->get();
     }
 }
