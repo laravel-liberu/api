@@ -51,6 +51,7 @@ class Api
         $method = Methods::get($this->endpoint->method());
 
         return Http::withHeaders($this->headers())
+            //TODO add option in endpoint or action for debug
             ->withOptions(['debug' => false])
             ->{$method}($this->endpoint->url(), $this->endpoint->body());
     }

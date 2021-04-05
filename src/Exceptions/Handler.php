@@ -9,15 +9,15 @@ use Throwable;
 
 class Handler
 {
-    private Throwable $exception;
     private string $action;
     private array $body;
+    private Throwable $exception;
 
-    public function __construct(Throwable $exception, string $action, array $body)
+    public function __construct(string $action, array $body, Throwable $exception)
     {
-        $this->exception = $exception;
         $this->action = $action;
         $this->body = $body;
+        $this->exception = $exception;
     }
 
     public function report()

@@ -33,10 +33,11 @@ class ApiCallError extends Notification implements ShouldQueue
 
     public function toMail($notifiable)
     {
+        $app = Config::get('app.name');
+
         return (new MailMessage())
-            ->subject(__('[ :app ] API call error', [
-                'app' => Config::get('app.name'),
-            ]))->greeting(__('Hi :name,', [
+            ->subject("[ {$app} ] {$this->subject()}")
+            ->greeting(__('Hi :name,', [
                 'name' => $notifiable->person->appellative(),
             ]))->line(__('The action :action failed with the following error code: :code', [
                 'action' => $this->action,
@@ -46,5 +47,12 @@ class ApiCallError extends Notification implements ShouldQueue
             ]))->line(__('Request payload: :payload', [
                 'payload' => json_encode($this->payload),
             ]));
+    }
+
+    private function subject(): string
+    {
+        return __('API call for :action failed', [
+            'action' => $this->action,
+        ]);
     }
 }

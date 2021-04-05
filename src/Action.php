@@ -14,7 +14,9 @@ abstract class Action
             return (new Api($this->endpoint()))->call();
         } catch (Throwable $exception) {
             $body = $this->endpoint()->body();
-            (new Handler($exception, static::class, $body))->report();
+
+            (new Handler(static::class, $body, $exception))->report();
+
             throw $exception;
         }
     }
