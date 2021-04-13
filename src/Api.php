@@ -4,6 +4,7 @@ namespace LaravelEnso\Api;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use LaravelEnso\Api\Contracts\AttachesFiles;
 use LaravelEnso\Api\Contracts\Endpoint;
 use LaravelEnso\Api\Contracts\Retry;
 use LaravelEnso\Api\Contracts\UsesAuth;
@@ -50,9 +51,13 @@ class Api
     {
         $method = Methods::get($this->endpoint->method());
 
-        return Http::withHeaders($this->headers())
-            //TODO add option in endpoint or action for debug
-            ->withOptions(['debug' => false])
+        $http = Http::withHeaders($this->headers());
+        //TODO add option in endpoint or action for debug
+        if ($this->endpoint instanceof AttachesFiles) {
+            $this->endpoint->attach($http);
+        }
+
+        return $http->withOptions(['debug' => false])
             ->{$method}($this->endpoint->url(), $this->endpoint->body());
     }
 
