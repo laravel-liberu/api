@@ -18,9 +18,12 @@ class ApiCallError extends Notification implements ShouldQueue
     private int $code;
     private string $message;
 
-    public function __construct(string $action, array $payload, Throwable $exception)
+    private string $url;
+
+    public function __construct(string $action, string $url, array $payload, Throwable $exception)
     {
         $this->action = $action;
+        $this->url = $url;
         $this->payload = $payload;
         $this->code = $exception->getCode();
         $this->message = $exception->getMessage();
@@ -39,8 +42,9 @@ class ApiCallError extends Notification implements ShouldQueue
             ->subject("[ {$app} ] {$this->subject()}")
             ->greeting(__('Hi :name,', [
                 'name' => $notifiable->person->appellative(),
-            ]))->line(__('The action :action failed with the following error code: :code', [
+            ]))->line(__('The action :action failed on :url with the following error code: :code', [
                 'action' => $this->action,
+                'url' => $this->url,
                 'code' => $this->code,
             ]))->line(__('Reported error message: :message', [
                 'message' => $this->message,

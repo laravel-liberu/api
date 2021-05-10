@@ -10,12 +10,14 @@ use Throwable;
 class Handler
 {
     private string $action;
+    private string $url;
     private array $body;
     private Throwable $exception;
 
-    public function __construct(string $action, array $body, Throwable $exception)
+    public function __construct(string $action, string $url, array $body, Throwable $exception)
     {
         $this->action = $action;
+        $this->url = $url;
         $this->body = $body;
         $this->exception = $exception;
     }
@@ -27,7 +29,7 @@ class Handler
 
     private function notification(): ApiCallError
     {
-        $args = [$this->action, $this->body, $this->exception];
+        $args = [$this->action, $this->url, $this->body, $this->exception];
 
         return (new ApiCallError(...$args))->onQueue('notifications');
     }
