@@ -4,32 +4,32 @@ namespace LaravelEnso\Api\Exceptions;
 
 use Illuminate\Database\Eloquent\Collection;
 use LaravelEnso\Api\Notifications\ApiCallError;
-use LaravelEnso\Core\Models\User;
+use LaravelEnso\Users\Models\User;
 use Throwable;
 
 class Handler
 {
-    private string $action;
-    private string $url;
-    private array $body;
-    private Throwable $exception;
-
-    public function __construct(string $action, string $url, array $body, Throwable $exception)
-    {
-        $this->action = $action;
-        $this->url = $url;
-        $this->body = $body;
-        $this->exception = $exception;
+    public function __construct(
+        private string $action,
+        private string $url,
+        private array $body,
+        private Throwable $exception
+    ) {
     }
 
-    public function report()
+    public function report(): void
     {
-        $this->admins()->each->notify($this->notification());
+        $notification = $this->notification();
+
+        $this->admins()->each->notify($notification);
     }
 
     private function notification(): ApiCallError
     {
-        $args = [$this->action, $this->url, $this->body, $this->exception];
+        $args = [
+            $this->action, $this->url, $this->body,
+            $this->exception->getCode(), $this->exception->getMessage(),
+        ];
 
         return (new ApiCallError(...$args))->onQueue('notifications');
     }

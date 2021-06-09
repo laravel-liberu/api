@@ -3,6 +3,7 @@
 namespace LaravelEnso\Api;
 
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use LaravelEnso\Api\Contracts\AttachesFiles;
 use LaravelEnso\Api\Contracts\Endpoint;
@@ -15,7 +16,6 @@ use LaravelEnso\Api\Enums\ResponseCodes;
 class Api
 {
     protected Endpoint $endpoint;
-
     protected int $tries;
 
     public function __construct(Endpoint $endpoint)
@@ -52,12 +52,12 @@ class Api
         $method = Methods::get($this->endpoint->method());
 
         $http = Http::withHeaders($this->headers());
-        //TODO add option in endpoint or action for debug
+
         if ($this->endpoint instanceof AttachesFiles) {
             $this->endpoint->attach($http);
         }
 
-        return $http->withOptions(['debug' => false])
+        return $http->withOptions(['debug' => Config::get('enso.api.debug')])
             ->{$method}($this->endpoint->url(), $this->endpoint->body());
     }
 
