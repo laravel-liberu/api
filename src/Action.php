@@ -11,15 +11,46 @@ abstract class Action
     public function handle()
     {
         try {
-            return (new Api($this->endpoint()))->call();
-        } catch (Throwable $exception) {
-            $url = $this->endpoint()->url();
-            $body = $this->endpoint()->body();
+            $response = (new Api($this->endpoint()))->call();
+            $args = [
+                static::class,
+                $this->endpoint()->url(),
+                $this->endpoint()->body(),
+                $response->getCode(),
+                $response->getMessage(),
+            ];
 
-            (new Handler(static::class, $url, $body, $exception))->report();
+            if ($response->failed()) {
+                (new Handler(...$args))->report();
+                $this->wasReported = true;
+            }
+
+            return $response->throw();
+        } catch (Throwable $exception) {
+            $args = [
+                static::class,
+                $this->endpoint()->url(),
+                $this->endpoint()->body(),
+                $exception->getCode(),
+                $exception->getMessage(),
+            ];
+
+            (new Handler(...$args))->report();
 
             throw $exception;
         }
+    }
+
+    private function log()
+    {
+        Log::create([
+            'user_id' => Auth::user()?->id,
+            'url' => $this->endpoint->url(),
+            'route' => Route::currentRouteName(),
+            'method' => $this->endpoint->method(),
+            'try' => $this->tries,
+            'type' => Calls::Outbound,
+        ]);
     }
 
     abstract protected function endpoint(): Endpoint;

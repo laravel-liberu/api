@@ -28,6 +28,8 @@ class Api
     {
         $this->tries++;
 
+        $this->log();
+
         $response = $this->response();
 
         if ($response->failed()) {
@@ -44,7 +46,7 @@ class Api
             }
         }
 
-        return $response->throw();
+        return $response;
     }
 
     protected function response(): Response
