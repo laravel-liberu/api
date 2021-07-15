@@ -26,8 +26,6 @@ class Api
     {
         $this->tries++;
 
-        \Log::info($this->tries);
-
         $response = $this->response();
 
         if ($response->failed()) {

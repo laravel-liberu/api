@@ -20,7 +20,6 @@ class ApiLogger
             'url' => $request->url(),
             'route' => $request->route()->getName(),
             'method' => $request->method(),
-            'try' => 1,
             'status' => $response->status(),
             'type' => Calls::Inbound,
         ]);
