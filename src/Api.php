@@ -15,12 +15,10 @@ use LaravelEnso\Api\Enums\ResponseCodes;
 
 class Api
 {
-    protected Endpoint $endpoint;
     protected int $tries;
 
-    public function __construct(Endpoint $endpoint)
+    public function __construct(protected Endpoint $endpoint)
     {
-        $this->endpoint = $endpoint;
         $this->tries = 0;
     }
 
@@ -44,7 +42,12 @@ class Api
             }
         }
 
-        return $response->throw();
+        return $response;
+    }
+
+    public function tries(): int
+    {
+        return $this->tries;
     }
 
     protected function response(): Response
