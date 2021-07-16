@@ -43,20 +43,7 @@ abstract class Action
 
     abstract protected function endpoint(): Endpoint;
 
-    private function args(Throwable | Response $thrown)
-    {
-        $args = [
-            static::class,
-            $this->endpoint()->url(),
-            $this->endpoint()->body(),
-        ];
-
-        return $thrown instanceof Response
-            ? array_merge($args, [$thrown->status(), $thrown->body()])
-            : array_merge($args, [$thrown->getCode(), $thrown->getMessage()]);
-    }
-
-    private function log(Response $response)
+    private function log(Response $response): void
     {
         Log::create([
             'user_id' => Auth::user()?->id,
@@ -67,5 +54,16 @@ abstract class Action
             'try' => $this->api->tries(),
             'type' => Calls::Outbound,
         ]);
+    }
+
+    private function args(Throwable | Response $response): array
+    {
+        $base = [static::class, $this->endpoint()->url(), $this->endpoint()->body()];
+
+        $extra = $response instanceof Response
+            ? [$response->status(), $response->body()]
+            : [$response->getCode(), $response->getMessage()];
+
+        return [...$base, ...$extra];
     }
 }
