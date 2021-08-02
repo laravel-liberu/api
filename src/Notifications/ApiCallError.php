@@ -16,7 +16,7 @@ class ApiCallError extends Notification implements ShouldQueue
         private string $action,
         private string $url,
         private array $payload,
-        private int $code,
+        private int | string $code,
         private string $message
     ) {
     }
