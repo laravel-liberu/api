@@ -12,7 +12,7 @@ class Handler
         private string $action,
         private string $url,
         private array $body,
-        private string $code,
+        private int $code,
         private string $message
     ) {
     }
