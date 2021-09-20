@@ -6,6 +6,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use LaravelEnso\Api\Contracts\AttachesFiles;
+use LaravelEnso\Api\Contracts\CustomHeaders;
 use LaravelEnso\Api\Contracts\Endpoint;
 use LaravelEnso\Api\Contracts\Retry;
 use LaravelEnso\Api\Contracts\UsesAuth;
@@ -64,9 +65,13 @@ class Api
             ->{$method}($this->endpoint->url(), $this->endpoint->body());
     }
 
-    protected function headers()
+    protected function headers(): array
     {
         $headers = ['X-Requested-With' => 'XMLHttpRequest'];
+
+        if ($this->endpoint instanceof CustomHeaders) {
+            return $headers + $this->endpoint->headers();
+        }
 
         if ($this->endpoint instanceof UsesAuth) {
             $token = $this->endpoint->tokenProvider()->current();
