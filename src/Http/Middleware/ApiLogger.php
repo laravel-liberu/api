@@ -5,6 +5,7 @@ namespace LaravelEnso\Api\Http\Middleware;
 use Closure;
 use LaravelEnso\Api\Enums\Calls;
 use LaravelEnso\Api\Models\Log;
+use LaravelEnso\Helpers\Services\Decimals;
 
 class ApiLogger
 {
@@ -22,6 +23,7 @@ class ApiLogger
             'method' => $request->method(),
             'status' => $response->status(),
             'type' => Calls::Inbound,
+            'duration' => Decimals::ceil(LARAVEL_START - microtime(true)),
         ]);
     }
 }
