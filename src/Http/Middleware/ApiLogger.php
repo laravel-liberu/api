@@ -23,7 +23,7 @@ class ApiLogger
             'method' => $request->method(),
             'status' => $response->status(),
             'type' => Calls::Inbound,
-            'duration' => Decimals::ceil(LARAVEL_START - microtime(true)),
+            'duration' => Decimals::ceil(microtime(true) - LARAVEL_START),
         ]);
     }
 }
