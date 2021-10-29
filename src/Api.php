@@ -70,7 +70,7 @@ class Api
         $headers = ['X-Requested-With' => 'XMLHttpRequest'];
 
         if ($this->endpoint instanceof CustomHeaders) {
-            return $headers + $this->endpoint->headers();
+            $headers += $this->endpoint->headers();
         }
 
         if ($this->endpoint instanceof UsesAuth) {
