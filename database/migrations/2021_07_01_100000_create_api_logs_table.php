@@ -1,19 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-
-class CreateApiLogsTable extends Migration
-{
-    public function up()
-    {
-        Schema::create('api_logs', function (Blueprint $table) {
-            $table->increments('id');
-a<?php
-
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Schema;
 
 class CreateApiLogsTable extends Migration
@@ -35,29 +23,6 @@ class CreateApiLogsTable extends Migration
             $table->tinyInteger('type')->index();
 
             $table->decimal('duration', 8, 2)->nullable();
-
-            $table->timestamps();
-
-            $table->index('created_at');
-        });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('api_logs');
-    }
-}
-
-            $table->integer('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->string('route')->nullable();
-            $table->string('url');
-            $table->string('method');
-
-            $table->integer('status')->index();
-            $table->integer('try')->nullable();
-            $table->tinyInteger('type')->index();
 
             $table->timestamps();
 
