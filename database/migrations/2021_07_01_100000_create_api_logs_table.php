@@ -22,7 +22,7 @@ class CreateApiLogsTable extends Migration
             $table->integer('try')->nullable();
             $table->tinyInteger('type')->index();
 
-            $table->decimal('duration', 8, 2)->nullable();
+            $table->decimal('duration', 5, 2)->nullable();
 
             $table->timestamps();
 

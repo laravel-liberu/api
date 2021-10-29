@@ -17,6 +17,6 @@ class Duration implements MigratesTable
     public function migrateTable(): void
     {
         Schema::table('api_logs', fn (Blueprint $table) => $table
-            ->decimal('duration', 8, 2)->after('type')->nullable());
+            ->decimal('duration', 5, 2)->after('type')->nullable());
     }
 }
