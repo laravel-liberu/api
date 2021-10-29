@@ -23,4 +23,9 @@ abstract class Resource
 
         return $collection->map($resource)->toArray();
     }
+
+    public function toJson(): string
+    {
+        return json_encode($this->toArray());
+    }
 }
