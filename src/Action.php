@@ -22,7 +22,7 @@ abstract class Action
     public function handle()
     {
         if (! $this->apiEnabled()) {
-            throw Exception::disabled();
+            throw Exception::disabled($this);
         }
 
         try {
