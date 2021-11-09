@@ -36,7 +36,7 @@ class Api
                 return $this->call();
             }
 
-            if ($this->shouldRetry($response)) {
+            if ($this->shouldRetry()) {
                 sleep($this->endpoint->delay());
 
                 return $this->call();

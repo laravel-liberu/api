@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use LaravelEnso\Api\Contracts\Endpoint;
 use LaravelEnso\Api\Enums\Calls;
+use LaravelEnso\Api\Exceptions\Api as Exception;
 use LaravelEnso\Api\Exceptions\Handler;
 use LaravelEnso\Api\Models\Log;
 use Throwable;
@@ -17,8 +18,13 @@ abstract class Action
     private Api $api;
     private bool $handledFailure = false;
 
+    //TODO add return type: Response
     public function handle()
     {
+        if (! $this->apiEnabled()) {
+            throw Exception::disabled();
+        }
+
         try {
             $this->api = App::make(Api::class, ['endpoint' => $this->endpoint()]);
 
@@ -39,6 +45,11 @@ abstract class Action
 
             throw $exception;
         }
+    }
+
+    public function apiEnabled(): bool
+    {
+        return true;
     }
 
     abstract protected function endpoint(): Endpoint;
