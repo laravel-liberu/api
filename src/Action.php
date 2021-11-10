@@ -47,7 +47,7 @@ abstract class Action
         }
     }
 
-    public function apiEnabled(): bool
+    protected function apiEnabled(): bool
     {
         return true;
     }
