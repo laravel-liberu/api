@@ -27,7 +27,7 @@ abstract class Action
 
             $response = $this->api->call();
 
-            $duration = Decimals::ceil(microtime(true) - $timer);
+            $duration = Decimals::sub(microtime(true), $timer);
 
             $this->log($response, $duration);
 
@@ -38,7 +38,7 @@ abstract class Action
 
             return $response->throw();
         } catch (Throwable $exception) {
-            if (!$this->handledFailure) {
+            if (! $this->handledFailure) {
                 (new Handler(...$this->args($exception)))->report();
             }
 
