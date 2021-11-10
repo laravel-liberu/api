@@ -11,6 +11,7 @@ use LaravelEnso\Api\Enums\Calls;
 use LaravelEnso\Api\Exceptions\Api as Exception;
 use LaravelEnso\Api\Exceptions\Handler;
 use LaravelEnso\Api\Models\Log;
+use LaravelEnso\Helpers\Services\Decimals;
 use Throwable;
 
 abstract class Action
@@ -28,9 +29,13 @@ abstract class Action
         try {
             $this->api = App::make(Api::class, ['endpoint' => $this->endpoint()]);
 
+            $timer = microtime(true);
+
             $response = $this->api->call();
 
-            $this->log($response);
+            $duration = Decimals::sub(microtime(true), $timer);
+
+            $this->log($response, $duration);
 
             if ($response->failed()) {
                 (new Handler(...$this->args($response)))->report();
@@ -54,7 +59,7 @@ abstract class Action
 
     abstract protected function endpoint(): Endpoint;
 
-    private function log(Response $response): void
+    private function log(Response $response, string $duration): void
     {
         Log::create([
             'user_id' => Auth::user()?->id,
@@ -64,6 +69,7 @@ abstract class Action
             'status' => $response->status(),
             'try' => $this->api->tries(),
             'type' => Calls::Outbound,
+            'duration' => $duration,
         ]);
     }
 
