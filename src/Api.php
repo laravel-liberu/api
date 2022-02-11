@@ -60,9 +60,10 @@ class Api
         if ($this->endpoint instanceof AttachesFiles) {
             $this->endpoint->attach($http);
         }
+        $body = $this->endpoint->body() ?: null;
 
         return $http->withOptions(['debug' => Config::get('enso.api.debug')])
-            ->{$method}($this->endpoint->url(), $this->endpoint->body());
+            ->{$method}($this->endpoint->url(), $body);
     }
 
     protected function headers(): array
