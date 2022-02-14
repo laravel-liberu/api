@@ -60,7 +60,11 @@ class Api
         if ($this->endpoint instanceof AttachesFiles) {
             $this->endpoint->attach($http);
         }
-        $body = $this->endpoint->body() ?: null;
+        if ($method === Methods::post) {
+            $body = $this->endpoint->body();
+        } else {
+            $body = $this->endpoint->body() ?: null;
+        }
 
         return $http->withOptions(['debug' => Config::get('enso.api.debug')])
             ->{$method}($this->endpoint->url(), $body);
