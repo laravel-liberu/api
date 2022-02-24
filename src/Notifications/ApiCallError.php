@@ -16,7 +16,7 @@ class ApiCallError extends Notification implements ShouldQueue
         private string $action,
         private string $url,
         private array $payload,
-        private int | string $code,
+        private int|string $code,
         private string $message
     ) {
     }
@@ -36,8 +36,8 @@ class ApiCallError extends Notification implements ShouldQueue
                 'name' => $notifiable->person->appellative(),
             ]))->line(__('The action :action failed on :url with the following error code: :code', [
                 'action' => $this->action,
-                'url' => $this->url,
-                'code' => $this->code,
+                'url'    => $this->url,
+                'code'   => $this->code,
             ]))->line(__('Reported error message: :message', [
                 'message' => $this->message,
             ]))->line(__('Request payload: :payload', [

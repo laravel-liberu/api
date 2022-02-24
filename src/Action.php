@@ -22,7 +22,7 @@ abstract class Action
     //TODO add return type: Response
     public function handle()
     {
-        if (! $this->apiEnabled()) {
+        if (!$this->apiEnabled()) {
             throw Exception::disabled($this);
         }
 
@@ -44,7 +44,7 @@ abstract class Action
 
             return $response->throw();
         } catch (Throwable $exception) {
-            if (! $this->handledFailure) {
+            if (!$this->handledFailure) {
                 (new Handler(...$this->args($exception)))->report();
             }
 
@@ -62,18 +62,18 @@ abstract class Action
     private function log(Response $response, string $duration): void
     {
         Log::create([
-            'user_id' => Auth::user()?->id,
-            'url' => $this->endpoint()->url(),
-            'route' => Route::currentRouteName(),
-            'method' => $this->endpoint()->method(),
-            'status' => $response->status(),
-            'try' => $this->api->tries(),
-            'type' => Calls::Outbound,
+            'user_id'  => Auth::user()?->id,
+            'url'      => $this->endpoint()->url(),
+            'route'    => Route::currentRouteName(),
+            'method'   => $this->endpoint()->method(),
+            'status'   => $response->status(),
+            'try'      => $this->api->tries(),
+            'type'     => Calls::Outbound,
             'duration' => $duration,
         ]);
     }
 
-    private function args(Throwable | Response $response): array
+    private function args(Throwable|Response $response): array
     {
         $base = [static::class, $this->endpoint()->url(), $this->endpoint()->body()];
 

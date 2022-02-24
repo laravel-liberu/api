@@ -9,7 +9,8 @@ use LaravelEnso\Users\Models\User;
 
 class Log extends Model
 {
-    use Rememberable, TableCache;
+    use Rememberable;
+    use TableCache;
 
     protected $guarded = ['id'];
 
