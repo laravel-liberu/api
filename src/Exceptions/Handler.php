@@ -11,8 +11,8 @@ class Handler
     public function __construct(
         private string $action,
         private string $url,
-        private array $body,
-        private int|string $code,
+        private string|array $body,
+        private string|array $code,
         private string $message
     ) {
     }

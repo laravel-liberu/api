@@ -8,5 +8,5 @@ interface Endpoint
 
     public function url(): string;
 
-    public function body(): array;
+    public function body(): string | array;
 }

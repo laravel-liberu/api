@@ -98,13 +98,13 @@ class Api
             && $this->tries === 1;
     }
 
-    protected function body(): ?array
+    protected function body(): array|string|null
     {
         if ($this->method === Methods::post) {
             return $this->endpoint->body();
         }
 
-        return  $this->endpoint->body() ?: null;
+        return $this->endpoint->body() ?: null;
     }
 
     protected function url(): string
