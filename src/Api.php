@@ -98,7 +98,7 @@ class Api
             && $this->tries === 1;
     }
 
-    protected function body(): array|string|null
+    protected function body(): string|array|null
     {
         if ($this->method === Methods::post) {
             return $this->endpoint->body();

@@ -50,7 +50,7 @@ class ApiCallError extends Notification implements ShouldQueue
             ]))->when($this->user !== null, fn ($message) => $message
                 ->line(__('Triggered by user id: :id ( :email )', [
                     'id' => $this->user->id,
-                    'name' => $this->user->email,
+                    'email' => $this->user->email,
                 ])));
     }
 
