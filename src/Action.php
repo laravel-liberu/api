@@ -22,7 +22,7 @@ abstract class Action
     //TODO add return type: Response
     public function handle()
     {
-        if (!$this->apiEnabled()) {
+        if (! $this->apiEnabled()) {
             throw Exception::disabled($this);
         }
 
@@ -44,7 +44,7 @@ abstract class Action
 
             return $response->throw();
         } catch (Throwable $exception) {
-            if (!$this->handledFailure) {
+            if (! $this->handledFailure) {
                 (new Handler(...$this->args($exception)))->report();
             }
 
@@ -75,7 +75,9 @@ abstract class Action
 
     private function args(Throwable|Response $response): array
     {
-        $base = [static::class, $this->endpoint()->url(), $this->endpoint()->body()];
+        $base = [
+            static::class, $this->endpoint()->url(), $this->endpoint()->body(),
+        ];
 
         $extra = $response instanceof Response
             ? [$response->status(), $response->body()]
