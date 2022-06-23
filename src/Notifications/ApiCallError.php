@@ -2,7 +2,6 @@
 
 namespace LaravelEnso\Api\Notifications;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -14,8 +13,6 @@ class ApiCallError extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private ?User $user;
-
     public function __construct(
         private string $action,
         private string $url,
@@ -23,7 +20,6 @@ class ApiCallError extends Notification implements ShouldQueue
         private int|string $code,
         private string $message,
     ) {
-        $this->user = Auth::user();
     }
 
     public function via()
@@ -47,10 +43,10 @@ class ApiCallError extends Notification implements ShouldQueue
                 'message' => $this->message,
             ]))->line(__('Request payload: :payload', [
                 'payload' => json_encode($this->payload),
-            ]))->when($this->user !== null, fn ($message) => $message
+            ]))->when(Auth::check(), fn ($message) => $message
                 ->line(__('Triggered by user id: :id ( :email )', [
-                    'id' => $this->user->id,
-                    'email' => $this->user->email,
+                    'id' => Auth::id(),
+                    'email' => Auth::user()->email,
                 ])));
     }
 
