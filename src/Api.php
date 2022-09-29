@@ -12,6 +12,7 @@ use LaravelEnso\Api\Contracts\CustomHeaders;
 use LaravelEnso\Api\Contracts\Endpoint;
 use LaravelEnso\Api\Contracts\QueryParameters;
 use LaravelEnso\Api\Contracts\Retry;
+use LaravelEnso\Api\Contracts\Timeout;
 use LaravelEnso\Api\Contracts\UsesAuth;
 use LaravelEnso\Api\Enums\Authorization;
 use LaravelEnso\Api\Enums\Methods;
@@ -62,6 +63,10 @@ class Api
 
         if ($this->endpoint instanceof AttachesFiles) {
             $this->endpoint->attach($http);
+        }
+
+        if ($this->endpoint instanceof Timeout) {
+            $http->timeout($this->endpoint->timeout());
         }
 
         return $http->withOptions(['debug' => Config::get('enso.api.debug')])
