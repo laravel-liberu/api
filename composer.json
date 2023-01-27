@@ -1,32 +1,32 @@
 {
-    "name": "laravel-enso/api",
+    "name": "cgdsoftware/api",
     "description": "External API boilerplate for Laravel Enso",
     "keywords": [
-        "laravel-enso",
+        "cgdsoftware",
         "api"
     ],
-    "homepage": "https://git.xtelecom.ro/laravel-enso/api",
+    "homepage": "https://git.xtelecom.ro/cgdsoftware/api",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Adrian Ocneanu",
             "email": "aocneanu@gmail.com",
-            "homepage": "https://laravel-enso.com",
+            "homepage": "https://cgdsoftware.com",
             "role": "Developer"
         },
         {
             "name": "Vlad Chiovianu",
             "email": "vlad.chiovianu@earthlink.ro",
-            "homepage": "https://laravel-enso.com",
+            "homepage": "https://cgdsoftware.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.0",
         "laravel/framework": "^7.0|^8.0|^9.0",
-        "laravel-enso/enums": "^2.0",
-        "laravel-enso/helpers": "^2.0"
+        "cgdsoftware/enums": "^2.0",
+        "cgdsoftware/helpers": "^2.0"
     },
     "autoload": {
         "psr-4": {
