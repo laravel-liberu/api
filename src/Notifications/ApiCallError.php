@@ -14,11 +14,11 @@ class ApiCallError extends Notification implements ShouldQueue
     use Queueable;
 
     public function __construct(
-        private string $action,
-        private string $url,
-        private string|array $payload,
-        private int|string $code,
-        private string $message,
+        private readonly string $action,
+        private readonly string $url,
+        private readonly string|array $payload,
+        private readonly int|string $code,
+        private readonly string $message,
     ) {
     }
 
@@ -42,7 +42,7 @@ class ApiCallError extends Notification implements ShouldQueue
             ]))->line(__('Reported error message: :message', [
                 'message' => $this->message,
             ]))->line(__('Request payload: :payload', [
-                'payload' => json_encode($this->payload),
+                'payload' => json_encode($this->payload, JSON_THROW_ON_ERROR),
             ]))->when(Auth::check(), fn ($message) => $message
                 ->line(__('Triggered by user id: :id ( :email )', [
                     'id' => Auth::id(),

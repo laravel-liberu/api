@@ -4,12 +4,10 @@ namespace LaravelEnso\Api;
 
 class Throttle
 {
-    private int $debounce;
     private float $time;
 
-    public function __construct(int $debounce)
+    public function __construct(private readonly int $debounce)
     {
-        $this->debounce = $debounce;
         $this->time = $this->now();
     }
 

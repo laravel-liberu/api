@@ -6,14 +6,14 @@ use LaravelEnso\Enums\Services\Enum;
 
 class ResponseCodes extends Enum
 {
-    public const OK = 200;
-    public const Created = 201;
+    final public const OK = 200;
+    final public const Created = 201;
 
-    public const Unauthorized = 401;
-    public const Forbidden = 403;
+    final public const Unauthorized = 401;
+    final public const Forbidden = 403;
 
-    public const NotFound = 404;
-    public const UnprocessableEntity = 422;
+    final public const NotFound = 404;
+    final public const UnprocessableEntity = 422;
 
     public static function needsAuth(int $code): bool
     {

@@ -7,11 +7,8 @@ use LaravelEnso\Api\Exceptions\Filters;
 
 abstract class Filter
 {
-    private array $filters;
-
-    public function __construct(array $filters)
+    public function __construct(private readonly array $filters)
     {
-        $this->filters = $filters;
     }
 
     abstract public function allowed(): array;

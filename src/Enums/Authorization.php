@@ -9,6 +9,6 @@ class Authorization extends Enum
     protected static bool $localisation = false;
     protected static bool $validatesKeys = true;
 
-    public const Basic = 'Basic';
-    public const Bearer = 'Bearer';
+    final public const Basic = 'Basic';
+    final public const Bearer = 'Bearer';
 }

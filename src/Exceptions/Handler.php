@@ -9,11 +9,11 @@ use LaravelEnso\Users\Models\User;
 class Handler
 {
     public function __construct(
-        private string $action,
-        private string $url,
-        private string|array $body,
-        private int|string $code,
-        private string $message
+        private readonly string $action,
+        private readonly string $url,
+        private readonly string|array $body,
+        private readonly int|string $code,
+        private readonly string $message
     ) {
     }
 
