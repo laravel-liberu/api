@@ -11,8 +11,7 @@ return new class extends Migration
         Schema::create('api_logs', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->nullable()->constrained('users')->index()->name('api_logs_user_id_foreign');
 
             $table->string('route')->nullable();
             $table->string('url');
