@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelEnso\Api;
+namespace LaravelLiberu\Api;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Api\Http\Middleware\ApiLogger;
-use LaravelEnso\Core\Http\Middleware\VerifyActiveState;
-use LaravelEnso\Localisation\Http\Middleware\SetLanguage;
-use LaravelEnso\Permissions\Http\Middleware\VerifyRouteAccess;
+use LaravelLiberu\Api\Http\Middleware\ApiLogger;
+use LaravelLiberu\Core\Http\Middleware\VerifyActiveState;
+use LaravelLiberu\Localisation\Http\Middleware\SetLanguage;
+use LaravelLiberu\Permissions\Http\Middleware\VerifyRouteAccess;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelEnso\\Api\\": "src/"
+            "LaravelLiberu\\Api\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\Api\\AppServiceProvider"
+                "LaravelLiberu\\Api\\AppServiceProvider"
             ]
         }
     },

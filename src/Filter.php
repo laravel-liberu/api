@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Api;
+namespace LaravelLiberu\Api;
 
 use Illuminate\Support\Collection;
-use LaravelEnso\Api\Exceptions\Filters;
+use LaravelLiberu\Api\Exceptions\Filters;
 
 abstract class Filter
 {

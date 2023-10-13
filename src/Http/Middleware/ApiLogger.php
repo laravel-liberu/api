@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\Api\Http\Middleware;
+namespace LaravelLiberu\Api\Http\Middleware;
 
 use Closure;
-use LaravelEnso\Api\Enums\Calls;
-use LaravelEnso\Api\Models\Log;
-use LaravelEnso\Helpers\Services\Decimals;
+use LaravelLiberu\Api\Enums\Calls;
+use LaravelLiberu\Api\Models\Log;
+use LaravelLiberu\Helpers\Services\Decimals;
 
 class ApiLogger
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Api\Contracts;
+namespace LaravelLiberu\Api\Contracts;
 
 interface Endpoint
 {

@@ -1,21 +1,21 @@
 <?php
 
-namespace LaravelEnso\Api;
+namespace LaravelLiberu\Api;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use LaravelEnso\Api\Contracts\AttachesFiles;
-use LaravelEnso\Api\Contracts\CustomHeaders;
-use LaravelEnso\Api\Contracts\Endpoint;
-use LaravelEnso\Api\Contracts\QueryParameters;
-use LaravelEnso\Api\Contracts\Retry;
-use LaravelEnso\Api\Contracts\UsesAuth;
-use LaravelEnso\Api\Enums\Authorization;
-use LaravelEnso\Api\Enums\Methods;
-use LaravelEnso\Api\Enums\ResponseCodes;
+use LaravelLiberu\Api\Contracts\AttachesFiles;
+use LaravelLiberu\Api\Contracts\CustomHeaders;
+use LaravelLiberu\Api\Contracts\Endpoint;
+use LaravelLiberu\Api\Contracts\QueryParameters;
+use LaravelLiberu\Api\Contracts\Retry;
+use LaravelLiberu\Api\Contracts\UsesAuth;
+use LaravelLiberu\Api\Enums\Authorization;
+use LaravelLiberu\Api\Enums\Methods;
+use LaravelLiberu\Api\Enums\ResponseCodes;
 
 class Api
 {

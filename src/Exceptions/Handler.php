@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Api\Exceptions;
+namespace LaravelLiberu\Api\Exceptions;
 
 use Illuminate\Database\Eloquent\Collection;
-use LaravelEnso\Api\Notifications\ApiCallError;
-use LaravelEnso\Users\Models\User;
+use LaravelLiberu\Api\Notifications\ApiCallError;
+use LaravelLiberu\Users\Models\User;
 
 class Handler
 {

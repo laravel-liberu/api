@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\Api\Models;
+namespace LaravelLiberu\Api\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\Rememberable\Traits\Rememberable;
-use LaravelEnso\Tables\Traits\TableCache;
-use LaravelEnso\Users\Models\User;
+use LaravelLiberu\Rememberable\Traits\Rememberable;
+use LaravelLiberu\Tables\Traits\TableCache;
+use LaravelLiberu\Users\Models\User;
 
 class Log extends Model
 {

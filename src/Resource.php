@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Api;
+namespace LaravelLiberu\Api;
 
 use Illuminate\Support\Collection;
 

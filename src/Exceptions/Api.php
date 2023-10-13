@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Api\Exceptions;
+namespace LaravelLiberu\Api\Exceptions;
 
 use Illuminate\Support\Str;
-use LaravelEnso\Api\Action;
-use LaravelEnso\Helpers\Exceptions\EnsoException;
+use LaravelLiberu\Api\Action;
+use LaravelLiberu\Helpers\Exceptions\EnsoException;
 
 class Api extends EnsoException
 {

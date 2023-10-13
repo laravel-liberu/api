@@ -1,17 +1,17 @@
 <?php
 
-namespace LaravelEnso\Api;
+namespace LaravelLiberu\Api;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use LaravelEnso\Api\Contracts\Endpoint;
-use LaravelEnso\Api\Enums\Calls;
-use LaravelEnso\Api\Exceptions\Api as Exception;
-use LaravelEnso\Api\Exceptions\Handler;
-use LaravelEnso\Api\Models\Log;
-use LaravelEnso\Helpers\Services\Decimals;
+use LaravelLiberu\Api\Contracts\Endpoint;
+use LaravelLiberu\Api\Enums\Calls;
+use LaravelLiberu\Api\Exceptions\Api as Exception;
+use LaravelLiberu\Api\Exceptions\Handler;
+use LaravelLiberu\Api\Models\Log;
+use LaravelLiberu\Helpers\Services\Decimals;
 use Throwable;
 
 abstract class Action
