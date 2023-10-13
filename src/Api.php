@@ -64,7 +64,7 @@ class Api
             $this->endpoint->attach($http);
         }
 
-        return $http->withOptions(['debug' => Config::get('enso.api.debug')])
+        return $http->withOptions(['debug' => Config::get('liberu.api.debug')])
             ->{$this->method}($this->url(), $this->body());
     }
 

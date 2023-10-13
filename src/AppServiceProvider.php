@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/api.php', 'enso.api');
+        $this->mergeConfigFrom(__DIR__.'/../config/api.php', 'liberu.api');
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }

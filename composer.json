@@ -5,20 +5,20 @@
         "laravel-liberu",
         "api"
     ],
-    "homepage": "https://git.xtelecom.ro/laravel-liberu/api",
+urtis/projects/backend/laravel-liberu/pdf/composer.json
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Adrian Ocneanu",
             "email": "aocneanu@gmail.com",
-            "homepage": "https://laravel-liberu.com",
+urtis/projects/backend/laravel-liberu/pdf/composer.json
             "role": "Developer"
         },
         {
             "name": "Vlad Chiovianu",
             "email": "vlad.chiovianu@earthlink.ro",
-            "homepage": "https://laravel-liberu.com",
+urtis/projects/backend/laravel-liberu/pdf/composer.json
             "role": "Developer"
         }
     ],
