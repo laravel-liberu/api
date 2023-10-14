@@ -1,6 +1,6 @@
 {
     "name": "laravel-liberu/api",
-    "description": "External API boilerplate for Laravel Enso",
+    "description": "External API boilerplate for Laravel Liberu",
     "keywords": [
         "laravel-liberu",
         "api"

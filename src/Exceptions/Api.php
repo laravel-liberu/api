@@ -4,9 +4,9 @@ namespace LaravelLiberu\Api\Exceptions;
 
 use Illuminate\Support\Str;
 use LaravelLiberu\Api\Action;
-use LaravelLiberu\Helpers\Exceptions\EnsoException;
+use LaravelLiberu\Helpers\Exceptions\LiberuException;
 
-class Api extends EnsoException
+class Api extends LiberuException
 {
     public static function disabled(Action $action): self
     {
